@@ -45,4 +45,20 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    
+    /**
+     * Get the stories created by this user.
+     */
+    public function stories()
+    {
+        return $this->hasMany(Story::class);
+    }
+    
+    /**
+     * Get progress records for this user.
+     */
+    public function progress()
+    {
+        return $this->hasMany(Progress::class);
+    }
 }
