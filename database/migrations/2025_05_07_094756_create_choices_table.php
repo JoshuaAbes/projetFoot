@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('choices', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('chapter_id');
             $table->string('text');
-            $table->foreignId('from_chapter_id')->constrained('chapters')->onDelete('cascade');
-            $table->foreignId('to_chapter_id')->constrained('chapters')->onDelete('cascade');
+            $table->unsignedBigInteger('next_chapter_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('chapter_id')->references('id')->on('chapters')->onDelete('cascade');
+            $table->foreign('next_chapter_id')->references('id')->on('chapters')->onDelete('set null');
         });
     }
 

@@ -1,4 +1,3 @@
-_stories_table.php
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -15,13 +14,12 @@ return new class extends Migration
         Schema::create('stories', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('description');
-            $table->string('cover_image')->nullable();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->boolean('is_published')->default(false);
+            $table->text('summary')->nullable();
+            $table->string('author')->nullable();
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.
