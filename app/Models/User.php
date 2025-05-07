@@ -52,7 +52,7 @@ class User extends Authenticatable
      */
     public function stories()
     {
-        return $this->hasMany(Story::class);
+        return $this->hasMany(\App\Models\Story::class);
     }
     
     /**
@@ -60,6 +60,6 @@ class User extends Authenticatable
      */
     public function progress()
     {
-        return $this->hasMany(Progress::class);
+        return $this->hasMany(\App\Models\Progress::class);
     }
 }

@@ -24,19 +24,7 @@ class StoryController extends Controller
         ]);
     }
     
-    /**
-     * Display a listing of stories created by the authenticated user.
-     */
-    public function myStories()
-    {
-        $stories = Auth::user()->stories()
-            ->orderBy('created_at', 'desc')
-            ->get();
-            
-        return response()->json([
-            'stories' => $stories
-        ]);
-    }
+    
 
     /**
      * Store a newly created resource in storage.
