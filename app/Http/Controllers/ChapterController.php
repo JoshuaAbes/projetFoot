@@ -46,6 +46,12 @@ class ChapterController extends Controller
         ]);
     }
 
+    // Ajouter cette méthode
+    public function getChapters(): JsonResponse
+    {
+        $chapters = Chapter::with('choices')->get();
+        return response()->json($chapters);
+    }
 
     public function update(UpdateChapterRequest $request, Chapter $chapter): JsonResponse
     {
