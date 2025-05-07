@@ -6,7 +6,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -45,21 +44,5 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
-    }
-    
-    /**
-     * Get the stories created by this user.
-     */
-    public function stories()
-    {
-        return $this->hasMany(\App\Models\Story::class);
-    }
-    
-    /**
-     * Get progress records for this user.
-     */
-    public function progress()
-    {
-        return $this->hasMany(\App\Models\Progress::class);
     }
 }

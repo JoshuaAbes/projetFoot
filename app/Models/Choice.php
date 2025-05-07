@@ -2,37 +2,24 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Choice extends Model
 {
-    use HasFactory;
-    
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<string>
-     */
-    protected $fillable = [
-        'text',
-        'from_chapter_id',
-        'to_chapter_id',
+    protected $fillable = ['text', 'chapter_id', 'next_chapter_id', 'traits'];
+
+    protected $casts = [
+        'traits' => 'array',
     ];
-    
-    /**
-     * Get the chapter this choice leads from.
-     */
-    public function fromChapter()
+
+    public function chapter(): BelongsTo
     {
-        return $this->belongsTo(Chapter::class, 'from_chapter_id');
+        return $this->belongsTo(Chapter::class);
     }
-    
-    /**
-     * Get the chapter this choice leads to.
-     */
-    public function toChapter()
+
+    public function nextChapter(): BelongsTo
     {
-        return $this->belongsTo(Chapter::class, 'to_chapter_id');
+        return $this->belongsTo(Chapter::class, 'next_chapter_id');
     }
 }
