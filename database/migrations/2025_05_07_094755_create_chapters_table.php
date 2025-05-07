@@ -14,8 +14,11 @@ return new class extends Migration
         Schema::create('chapters', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('story_id');
+            $table->string('title');
             $table->text('content');
             $table->integer('chapter_number');
+            $table->boolean('is_ending')->default(false); 
+            $table->boolean('is_starting')->default(false);  
             $table->timestamps();
 
             $table->foreign('story_id')->references('id')->on('stories')->onDelete('cascade');

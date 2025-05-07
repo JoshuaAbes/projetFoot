@@ -44,8 +44,8 @@ class FootballStorySeeder extends Seeder
         // Créer l'histoire
         $story = Story::create([
             'title' => 'Devenir une légende du football',
-            'description' => 'Une aventure interactive qui te permet de vivre le parcours d\'un jeune talent qui rêve de devenir une star du football.',
-            'cover_image' => 'covers/football.jpg',
+            'summary' => 'Une aventure interactive qui te permet de vivre le parcours d\'un jeune talent qui rêve de devenir une star du football.',
+            'author' => 'Auteur',
             'is_published' => true,
             'user_id' => $user->id,
         ]);
@@ -54,12 +54,10 @@ class FootballStorySeeder extends Seeder
         $chapters = [];
         foreach ($storyData['chapters'] as $index => $chapterData) {
             $chapter = Chapter::create([
+                'story_id' => $story->id,
                 'title' => $chapterData['title'],
                 'content' => $chapterData['content'],
-                'story_id' => $story->id,
-                // Le premier chapitre est le chapitre de départ
-                'is_starting' => $index === 0,
-                // Les chapitres sans choix sont des chapitres de fin
+                'chapter_number' => $index + 1,
                 'is_ending' => !isset($chapterData['choices']) || empty($chapterData['choices']),
             ]);
             
@@ -80,9 +78,9 @@ class FootballStorySeeder extends Seeder
                     }
                     
                     Choice::create([
+                        'chapter_id' => $chapters[$index]->id,
                         'text' => $choiceData['text'],
-                        'from_chapter_id' => $chapters[$index]->id,
-                        'to_chapter_id' => $chapters[$nextChapterIndex]->id,
+                        'next_chapter_id' => $chapters[$nextChapterIndex]->id,
                     ]);
                 }
             }

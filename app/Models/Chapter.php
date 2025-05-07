@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Chapter extends Model
 {
-    protected $fillable = ['content', 'chapter_number', 'story_id', 'image', 'is_ending', 'is_chest_room'];
+    protected $fillable = ['title', 'content', 'chapter_number', 'story_id', 'image', 'is_ending', 'is_starting'];
 
     public function story(): BelongsTo
     {

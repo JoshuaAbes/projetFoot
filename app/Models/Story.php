@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Story extends Model
 {
-    protected $fillable = ['title', 'summary', 'author'];
+    protected $fillable = ['title', 'summary', 'description', 'author', 'cover_image', 'is_published'];
 
     public function chapters(): HasMany
     {

@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('title');
             $table->text('summary')->nullable();
             $table->string('author')->nullable();
+            $table->boolean('is_published')->default(false);
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->nullOnDelete();
             $table->timestamps();
         });
     }
