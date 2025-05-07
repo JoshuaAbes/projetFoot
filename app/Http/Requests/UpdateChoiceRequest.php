@@ -3,16 +3,15 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
-class StoryRequest extends FormRequest
+class UpdateChoiceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return Auth::check();
+        return false;
     }
 
     /**
@@ -23,10 +22,9 @@ class StoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'cover_image' => 'nullable|string',
-            'is_published' => 'boolean',
+            'chapter_id' => 'required|exists:chapters,id',
+            'text' => 'required|string|max:255',
+            'next_chapter_id' => 'nullable|exists:chapters,id',
         ];
     }
 }

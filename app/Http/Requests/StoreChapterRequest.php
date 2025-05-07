@@ -3,16 +3,15 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
-class ProgressRequest extends FormRequest
+class StoreChapterRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return Auth::check();
+        return false;
     }
 
     /**
@@ -24,8 +23,8 @@ class ProgressRequest extends FormRequest
     {
         return [
             'story_id' => 'required|exists:stories,id',
-            'current_chapter_id' => 'required|exists:chapters,id',
-            'visited_chapters' => 'nullable|array',
+            'content' => 'required|string',
+            'chapter_number' => 'required|integer|min:1',
         ];
     }
 }
