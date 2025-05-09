@@ -1,24 +1,22 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import StoryView from '../views/StoryView.vue';
+import ChapterView from '../views/ChapterView.vue';
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: () => import('../views/HomeView.vue'),
-    meta: { title: 'Accueil - Fiction Interactive' }
+    redirect: '/stories/1' 
   },
   {
     path: '/stories/:id',
     name: 'story',
-    component: () => import('../views/StoryView.vue'),
-    meta: { title: 'Histoire - Fiction Interactive' },
+    component: StoryView,
     props: true
   },
   {
     path: '/stories/:storyId/chapters/:chapterId',
     name: 'chapter',
-    component: () => import('../views/ChapterView.vue'),
-    meta: { title: 'Lecture - Fiction Interactive' },
+    component: ChapterView,
     props: true
   }
 ];
@@ -26,12 +24,6 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes
-});
-
-// Mettre à jour le titre de la page
-router.beforeEach((to, from, next) => {
-  document.title = to.meta.title || 'Fiction Interactive';
-  next();
 });
 
 export default router;

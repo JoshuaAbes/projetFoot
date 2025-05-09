@@ -16,17 +16,25 @@ const firstChapter = ref(null);
 const totalChapters = ref(0);
 
 onMounted(async () => {
-  // Charger l'histoire
-  story.value = await storyStore.fetchStory(storyId);
-  
-  if (story.value) {
-    // Charger la progression
-    await progressStore.loadProgress(storyId);
+  try {
+    // Charger l'histoire
+    const response = await storyStore.fetchStory(storyId);
+    console.log("Réponse API:", response); // Débogage
+    
+    if (!response) {
+      storyStore.error = "Histoire introuvable.";
+      return;
+    }
+    
+    story.value = response;
     
     // Déterminer le nombre total de chapitres pour le calcul de pourcentage
-    if (story.value.chapters) {
+    if (story.value && story.value.chapters) {
       totalChapters.value = story.value.chapters.length;
     }
+    
+    // Charger la progression
+    await progressStore.loadProgress(storyId);
     
     // Charger le premier chapitre ou celui en cours
     try {
@@ -40,6 +48,9 @@ onMounted(async () => {
     } catch (error) {
       console.error("Erreur lors du chargement du premier chapitre:", error);
     }
+  } catch (error) {
+    console.error("Erreur lors du chargement de l'histoire:", error);
+    storyStore.error = "Erreur lors du chargement de l'histoire.";
   }
 });
 
@@ -48,8 +59,9 @@ const startReading = () => {
     // Reprendre où l'utilisateur s'était arrêté
     router.push(`/stories/${storyId}/chapters/${progressStore.currentProgress.current_chapter_id}`);
   } else if (firstChapter.value) {
-    // Commencer par le premier chapitre
-    router.push(`/stories/${storyId}/chapters/${firstChapter.value.id}`);
+    // Commencer par le premier chapitre - CORRECTION ICI
+    const chapterId = firstChapter.value.chapter ? firstChapter.value.chapter.id : firstChapter.value.id;
+    router.push(`/stories/${storyId}/chapters/${chapterId}`);
   }
 };
 
@@ -89,11 +101,13 @@ const resetProgress = async () => {
       <button @click="$router.push('/')" class="back-button">Retour à l'accueil</button>
     </div>
     
-    <div v-else-if="story" class="story-detail">
+    <!-- Ajoutez cette vérification pour s'assurer que story existe -->
+    <div v-else-if="story && story.title" class="story-detail">
       <div class="story-header">
         <div class="story-cover">
           <img v-if="story.cover_image" :src="story.cover_image" :alt="story.title" class="cover-image">
-          <div v-else class="cover-placeholder">{{ story.title.charAt(0) }}</div>
+          <!-- Correction de la ligne problématique -->
+          <div v-else class="cover-placeholder">{{ story.title && story.title.charAt(0) || '?' }}</div>
         </div>
         
         <div class="story-info">

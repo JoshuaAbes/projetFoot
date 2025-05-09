@@ -23,11 +23,9 @@ const toggleMenu = () => {
         <span></span>
       </button>
       
+
       <nav class="main-nav" :class="{ 'is-open': isMenuOpen }">
-        <ul>
-          <li><router-link to="/">Accueil</router-link></li>
-          <li><router-link to="/about">À propos</router-link></li>
-        </ul>
+
       </nav>
     </div>
   </header>

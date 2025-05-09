@@ -25,9 +25,14 @@ class StoryController extends Controller
         return response()->json($stories);
     }
 
-    public function getStory(Story $story): JsonResponse
+    public function getStory(int $id): JsonResponse
     {
-        $story->load('chapters.choices');
+        $story = Story::with('chapters.choices')->find($id);
+        
+        if (!$story) {
+            return response()->json(['message' => 'Histoire non trouvée'], 404);
+        }
+        
         return response()->json($story);
     }
 

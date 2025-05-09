@@ -39,16 +39,16 @@ const loadChapter = async (id) => {
   }
 };
 
-const selectChoice = (choiceId, nextChapterId) => {
+const selectChoice = (choiceId, nextChapterIdParam) => {
   // Animation de transition
   fadeOutAnimation.value = true;
   
-  // Sauvegarder le prochain chapitre à charger
-  nextChapterId.value = nextChapterId;
+  // Stockez simplement la valeur, sans essayer d'accéder à .value
+  nextChapterId.value = nextChapterIdParam;
   
   // Attendre la fin de l'animation avant de naviguer
   setTimeout(() => {
-    router.push(`/stories/${storyId}/chapters/${nextChapterId}`);
+    router.push(`/stories/${storyId}/chapters/${nextChapterIdParam}`);
   }, 500);
 };
 
