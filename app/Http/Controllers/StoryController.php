@@ -18,6 +18,7 @@ class StoryController extends Controller
                 'summary' => $story->summary,
                 'author' => $story->author,
                 'cover' => $story->cover ?? null,
+                'is_published' => $story->is_published, // Ajouter cette ligne
             ];
         });
 
