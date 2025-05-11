@@ -16,6 +16,8 @@ const loading = ref(true);
 const error = ref(null);
 const fadeOutAnimation = ref(false);
 const nextChapterId = ref(null);
+const totalChapters = ref(0);
+const currentChapterNumber = ref(0);
 
 const loadChapter = async (id) => {
   loading.value = true;
@@ -25,6 +27,15 @@ const loadChapter = async (id) => {
     const data = await storyStore.fetchChapter(id);
     if (data) {
       chapter.value = data;
+      currentChapterNumber.value = data.chapter_number;
+      
+      // Charger le nombre total de chapitres si nécessaire
+      if (!totalChapters.value) {
+        const story = await storyStore.fetchStory(storyId);
+        if (story && story.chapters) {
+          totalChapters.value = story.chapters.length;
+        }
+      }
       
       // Sauvegarder la progression
       await progressStore.saveProgress(storyId, id);
@@ -43,7 +54,7 @@ const selectChoice = (choiceId, nextChapterIdParam) => {
   // Animation de transition
   fadeOutAnimation.value = true;
   
-  // Stockez simplement la valeur, sans essayer d'accéder à .value
+  // Stockez simplement la valeur
   nextChapterId.value = nextChapterIdParam;
   
   // Attendre la fin de l'animation avant de naviguer
@@ -54,6 +65,40 @@ const selectChoice = (choiceId, nextChapterIdParam) => {
 
 const goToStory = () => {
   router.push(`/stories/${storyId}`);
+};
+
+const restartStory = async () => {
+  // Réinitialiser la progression
+  if (progressStore.visitedChapters[storyId]) {
+    progressStore.visitedChapters[storyId] = [];
+    localStorage.setItem('visitedChapters', JSON.stringify(progressStore.visitedChapters));
+  }
+  
+  if (document.cookie.includes('laravel_session')) {
+    try {
+      const { request } = fetchJson({
+        url: `progress/${storyId}`,
+        method: 'DELETE'
+      });
+      await request;
+    } catch (error) {
+      console.error("Erreur lors de la réinitialisation de la progression:", error);
+    }
+  }
+  
+  // Charger le premier chapitre
+  try {
+    const firstChapter = await storyStore.fetchFirstChapter(storyId);
+    if (firstChapter) {
+      const firstChapterId = firstChapter.chapter ? firstChapter.chapter.id : firstChapter.id;
+      router.push(`/stories/${storyId}/chapters/${firstChapterId}`);
+    } else {
+      router.push(`/stories/${storyId}`);
+    }
+  } catch (error) {
+    console.error("Erreur lors du chargement du premier chapitre:", error);
+    router.push(`/stories/${storyId}`);
+  }
 };
 
 // Charger le chapitre initial
@@ -71,7 +116,7 @@ watch(() => route.params.chapterId, (newId, oldId) => {
 </script>
 
 <template>
-  <div class="chapter-view">
+  <div class="chapter-container">
     <div v-if="loading" class="loading-indicator">
       <p>Chargement du chapitre...</p>
     </div>
@@ -84,17 +129,15 @@ watch(() => route.params.chapterId, (newId, oldId) => {
     <div v-else-if="chapter" 
       :class="['chapter-content', { 'fade-out': fadeOutAnimation }]">
       
-      <h1 class="chapter-title" v-if="chapter.title">{{ chapter.title }}</h1>
-      
-      <div class="chapter-text">
-        <!-- Utiliser v-html avec précaution, cela suppose que le contenu du serveur est sécurisé -->
-        <div v-html="chapter.content"></div>
+      <div class="chapter-text-container">
+        <h1 class="chapter-title" v-if="chapter.title">{{ chapter.title }}</h1>
+        
+        <div class="chapter-text">
+          <p>{{ chapter.content }}</p>
+        </div>
       </div>
       
-      <div v-if="chapter.image" class="chapter-image">
-        <img :src="chapter.image" alt="Illustration du chapitre">
-      </div>
-      
+      <!-- Choix ou fin -->
       <div v-if="chapter.is_ending" class="chapter-ending">
         <p class="ending-message">Fin de l'histoire</p>
         <button @click="goToStory" class="return-button">Retour à l'histoire</button>
@@ -102,7 +145,6 @@ watch(() => route.params.chapterId, (newId, oldId) => {
       
       <div v-else-if="chapter.choices && chapter.choices.length > 0" 
         class="chapter-choices">
-        <h2 class="choices-title">Que voulez-vous faire ?</h2>
         <ul class="choices-list">
           <li v-for="choice in chapter.choices" :key="choice.id" class="choice-item">
             <button 
@@ -119,8 +161,13 @@ watch(() => route.params.chapterId, (newId, oldId) => {
       </div>
       
       <div v-else class="no-choices">
-        <p>Aucun choix disponible.</p>
         <button @click="goToStory" class="return-button">Retour à l'histoire</button>
+      </div>
+      
+      <!-- Footer avec informations -->
+      <div class="chapter-footer">
+        <button @click="restartStory" class="restart-button">Recommencer</button>
+        <div class="chapter-counter">{{ currentChapterNumber }}/{{ totalChapters }}</div>
       </div>
     </div>
     
@@ -132,13 +179,22 @@ watch(() => route.params.chapterId, (newId, oldId) => {
 </template>
 
 <style scoped>
-.chapter-view {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem 0;
+.chapter-container {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  position: relative;
+  background-color: #ce9059;
 }
 
 .chapter-content {
+  width: 100%;
+  max-width: 800px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
   opacity: 1;
   transition: opacity 0.5s ease;
 }
@@ -147,136 +203,166 @@ watch(() => route.params.chapterId, (newId, oldId) => {
   opacity: 0;
 }
 
+.chapter-text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  padding: 2rem 0;
+}
+
 .chapter-title {
   font-size: 2rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   text-align: center;
+  color: white;
 }
 
 .chapter-text {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-}
-
-.chapter-image {
-  margin: 2rem 0;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: white;
   text-align: center;
-}
-
-.chapter-image img {
-  max-width: 100%;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .chapter-choices {
   margin-top: 3rem;
-}
-
-.choices-title {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  text-align: center;
+  margin-bottom: 5rem;
 }
 
 .choices-list {
-  list-style: none;
+  list-style-type: none;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .choice-item {
   margin-bottom: 1rem;
+  width: 100%;
+  max-width: 400px;
 }
 
 .choice-button {
   width: 100%;
-  padding: 1rem;
-  background: #f5f5f5;
-  border: 1px solid #ddd;
+  padding: 0.8rem 1.5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: 2px solid white;
   border-radius: 4px;
-  text-align: left;
-  font-size: 1rem;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: all 0.2s ease;
+  text-align: center;
+  font-size: 1rem;
 }
 
 .choice-button:hover {
-  background: #eee;
-  transform: translateY(-2px);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .choice-button.visited {
-  background: #f0f7ff;
-  border-color: #b3d4ff;
+  border-color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .visited-indicator {
   font-size: 0.8rem;
-  color: #666;
   margin-left: 0.5rem;
+  opacity: 0.8;
+}
+
+.chapter-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+}
+
+.restart-button {
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.restart-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.chapter-counter {
+  color: white;
+  font-size: 1rem;
 }
 
 .chapter-ending {
-  margin-top: 3rem;
+  margin-top: 2rem;
   text-align: center;
 }
 
 .ending-message {
   font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: #333;
+  margin-bottom: 1.5rem;
+  color: white;
 }
 
-.return-button,
-.back-button {
-  padding: 0.75rem 1.5rem;
-  background: #333;
+.return-button {
+  padding: 0.8rem 1.5rem;
+  background-color: transparent;
   color: white;
-  border: none;
+  border: 2px solid white;
   border-radius: 4px;
   cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.return-button:hover,
-.back-button:hover {
-  background: #555;
+  margin-top: 1rem;
+  font-size: 1rem;
 }
 
 .loading-indicator,
 .error-message,
 .no-chapter {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
   padding: 2rem;
-  background: #f5f5f5;
-  border-radius: 8px;
-}
-
-.error-message {
-  color: #e53935;
-}
-
-.no-choices {
-  margin-top: 3rem;
   text-align: center;
+  color: white;
+}
+
+.back-button {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {
-  .chapter-view {
-    padding: 1rem 0;
-  }
-  
   .chapter-title {
     font-size: 1.5rem;
   }
   
   .chapter-text {
     font-size: 1rem;
+    padding: 0 1rem;
   }
   
-  .choices-title {
-    font-size: 1.2rem;
+  .chapter-footer {
+    flex-direction: row;
+    padding: 0.5rem;
   }
 }
 </style>
