@@ -123,7 +123,6 @@ watch(() => route.params.chapterId, (newId, oldId) => {
     
     <div v-else-if="error" class="error-message">
       <p>{{ error }}</p>
-      <button @click="goToStory" class="back-button">Retour à l'histoire</button>
     </div>
     
     <div v-else-if="chapter" 
@@ -140,7 +139,6 @@ watch(() => route.params.chapterId, (newId, oldId) => {
       <!-- Choix ou fin -->
       <div v-if="chapter.is_ending" class="chapter-ending">
         <p class="ending-message">Fin de l'histoire</p>
-        <button @click="goToStory" class="return-button">Retour à l'histoire</button>
       </div>
       
       <div v-else-if="chapter.choices && chapter.choices.length > 0" 
@@ -161,7 +159,6 @@ watch(() => route.params.chapterId, (newId, oldId) => {
       </div>
       
       <div v-else class="no-choices">
-        <button @click="goToStory" class="return-button">Retour à l'histoire</button>
       </div>
       
       <!-- Footer avec informations -->
@@ -173,7 +170,6 @@ watch(() => route.params.chapterId, (newId, oldId) => {
     
     <div v-else class="no-chapter">
       <p>Chapitre introuvable.</p>
-      <button @click="goToStory" class="back-button">Retour à l'histoire</button>
     </div>
   </div>
 </template>
