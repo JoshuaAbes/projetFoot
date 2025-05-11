@@ -41,17 +41,49 @@
   </div>
 </template>
 
+<style>
+/* Style global (sans "scoped") pour appliquer la police à toute l'application */
+body, html {
+  font-family: "Libre Baskerville", serif;
+  background-color: #38003D;
+  color: #03F1FE;
+}
+
+/* Classes utilitaires pour les différents styles */
+.libre-regular {
+  font-family: "Libre Baskerville", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.libre-bold {
+  font-family: "Libre Baskerville", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.libre-italic {
+  font-family: "Libre Baskerville", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+</style>
+
 <style scoped>
 .app-container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: #38003D; /* Fond violet foncé */
+  color: #03F1FE; /* Texte cyan */
+  font-family: "Libre Baskerville", serif;
 }
 
 /* Style spécial pour les vues de chapitre */
 .chapter-view .main-content {
   padding: 0;
   max-width: 100%;
+  background-color: #38003D; /* Même couleur de fond pour les chapitres */
 }
 
 .full-height {
@@ -66,6 +98,7 @@
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+  color: #03F1FE; /* S'assurer que le texte est cyan partout */
 }
 
 @media (max-width: 768px) {
