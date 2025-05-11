@@ -235,6 +235,13 @@ const resetProgress = async () => {
   cursor: pointer;
 }
 
+.chapter-footer {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
