@@ -180,7 +180,7 @@ watch(() => route.params.chapterId, (newId, oldId) => {
   justify-content: center;
   min-height: 100vh;
   position: relative;
-  background-color: #ce9059;
+  background-color: var(--color-primary); /* Utilisation de la variable */
 }
 
 .chapter-content {
@@ -212,13 +212,13 @@ watch(() => route.params.chapterId, (newId, oldId) => {
   font-size: 2rem;
   margin-bottom: 2rem;
   text-align: center;
-  color: white;
+  color: var(--color-text);
 }
 
 .chapter-text {
   font-size: 1.2rem;
   line-height: 1.7;
-  color: white;
+  color: var(--color-text); /* Utilisation de la variable */
   text-align: center;
   max-width: 600px;
   margin: 0 auto;
@@ -285,7 +285,7 @@ watch(() => route.params.chapterId, (newId, oldId) => {
 .restart-button {
   padding: 0.5rem 1rem;
   background-color: transparent;
-  color: white;
+  color: var(--color-text);
   border: 1px solid white;
   border-radius: 4px;
   cursor: pointer;
@@ -297,7 +297,7 @@ watch(() => route.params.chapterId, (newId, oldId) => {
 }
 
 .chapter-counter {
-  color: white;
+  color: var(--color-text);
   font-size: 1rem;
 }
 
@@ -309,7 +309,7 @@ watch(() => route.params.chapterId, (newId, oldId) => {
 .ending-message {
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
-  color: white;
+  color: var(--color-text);
 }
 
 .return-button {
