@@ -180,19 +180,22 @@ watch(() => route.params.chapterId, (newId, oldId) => {
   justify-content: center;
   min-height: 100vh;
   position: relative;
-  background-color: var(--color-primary); /* Utilisation de la variable */
+  background-color: var(--color-primary);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .chapter-content {
   width: 100%;
   max-width: 800px;
-  padding: 2rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-height: 100vh;
   opacity: 1;
   transition: opacity 0.5s ease;
+  box-sizing: border-box;
 }
 
 .fade-out {
@@ -205,28 +208,35 @@ watch(() => route.params.chapterId, (newId, oldId) => {
   justify-content: center;
   align-items: center;
   flex-grow: 1;
-  padding: 2rem 0;
+  padding: 1rem 0;
+  width: 100%;
 }
 
 .chapter-title {
-  font-size: 2rem;
-  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
   text-align: center;
   color: var(--color-text);
+  width: 100%;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
 }
 
 .chapter-text {
-  font-size: 1.2rem;
-  line-height: 1.7;
-  color: var(--color-text); /* Utilisation de la variable */
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
   text-align: center;
-  max-width: 600px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
 }
 
 .chapter-choices {
-  margin-top: 3rem;
-  margin-bottom: 5rem;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  width: 100%;
 }
 
 .choices-list {
@@ -235,25 +245,30 @@ watch(() => route.params.chapterId, (newId, oldId) => {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 .choice-item {
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
   width: 100%;
-  max-width: 400px;
+  max-width: 100%;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
 }
 
 .choice-button {
   width: 100%;
-  padding: 0.8rem 1.5rem;
+  padding: 0.8rem 1rem;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
-  border: 2px solid white;
+  border: 1px solid white;
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease;
   text-align: center;
-  font-size: 1rem;
+  font-size: 0.9rem;
+  white-space: normal;
+  height: auto;
 }
 
 .choice-button:hover {
@@ -275,21 +290,24 @@ watch(() => route.params.chapterId, (newId, oldId) => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 0;
+  padding: 0.5rem;
   position: absolute;
-  bottom: 1rem;
-  left: 1rem;
-  right: 1rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .restart-button {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.8rem;
   background-color: transparent;
   color: var(--color-text);
   border: 1px solid white;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .restart-button:hover {
@@ -298,16 +316,17 @@ watch(() => route.params.chapterId, (newId, oldId) => {
 
 .chapter-counter {
   color: var(--color-text);
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 .chapter-ending {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   text-align: center;
+  width: 100%;
 }
 
 .ending-message {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   margin-bottom: 1.5rem;
   color: var(--color-text);
 }
@@ -359,6 +378,77 @@ watch(() => route.params.chapterId, (newId, oldId) => {
   .chapter-footer {
     flex-direction: row;
     padding: 0.5rem;
+  }
+}
+
+/* Media queries pour les tablettes */
+@media (min-width: 768px) {
+  .chapter-content {
+    padding: 1.5rem;
+  }
+  
+  .chapter-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .chapter-text {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    max-width: 600px;
+  }
+  
+  .choice-item {
+    max-width: 400px;
+  }
+  
+  .choice-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .restart-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .chapter-counter {
+    font-size: 1rem;
+  }
+  
+  .ending-message {
+    font-size: 1.5rem;
+  }
+}
+
+/* Media queries pour desktop */
+@media (min-width: 1024px) {
+  .chapter-content {
+    padding: 2rem;
+  }
+  
+  .chapter-text-container {
+    padding: 2rem 0;
+  }
+}
+
+/* Orientation paysage pour mobiles */
+@media (max-height: 500px) and (orientation: landscape) {
+  .chapter-text-container {
+    padding: 0.5rem 0;
+  }
+  
+  .chapter-title {
+    margin-bottom: 0.5rem;
+  }
+  
+  .chapter-choices {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .choice-item {
+    margin-bottom: 0.5rem;
   }
 }
 </style>

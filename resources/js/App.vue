@@ -47,6 +47,17 @@ body, html {
   font-family: "Libre Baskerville", serif;
   background-color: #38003D;
   color: #03F1FE;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
 }
 
 /* Classes utilitaires pour les différents styles */
@@ -77,6 +88,7 @@ body, html {
   background-color: #38003D; /* Fond violet foncé */
   color: #03F1FE; /* Texte cyan */
   font-family: "Libre Baskerville", serif;
+  width: 100%;
 }
 
 /* Style spécial pour les vues de chapitre */
@@ -84,30 +96,36 @@ body, html {
   padding: 0;
   max-width: 100%;
   background-color: #38003D; /* Même couleur de fond pour les chapitres */
+  width: 100%;
 }
 
 .full-height {
   padding: 0;
   max-width: 100%;
   margin: 0;
+  width: 100%;
 }
 
 .main-content {
   flex: 1;
-  padding: 1.5rem;
-  max-width: 1200px;
+  padding: 0.5rem;
+  max-width: 100%;
   margin: 0 auto;
   width: 100%;
   color: #03F1FE; /* S'assurer que le texte est cyan partout */
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .main-content {
     padding: 1rem;
+    max-width: 90%;
   }
-  
-  .full-height {
-    padding: 0;
+}
+
+@media (min-width: 1024px) {
+  .main-content {
+    padding: 1.5rem;
+    max-width: 1200px;
   }
 }
 </style>

@@ -153,54 +153,58 @@ const resetProgress = async () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 120px);
-  padding: 2rem;
+  min-height: calc(100vh - 60px);
+  padding: 1rem;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .story-card {
   width: 100%;
-  max-width: 800px;
+  max-width: 100%;
   text-align: center;
   background-color: #24292e;
-  color: white;
-  padding: 3rem 2rem;
+  color: var(--color-text);
+  padding: 1.5rem 1rem;
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   animation: fadeIn 0.8s ease;
 }
 
 .story-header {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .story-title {
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   margin: 0;
   font-weight: 700;
+  word-break: break-word;
 }
 
 .story-content {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .story-summary {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
 }
 
 .story-author {
   font-style: italic;
   color: #ccc;
+  font-size: 0.9rem;
 }
 
 .story-action {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 .start-button {
-  padding: 1rem 2rem;
-  font-size: 1.2rem;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
   background-color: #4d9aff;
   color: white;
   border: none;
@@ -208,21 +212,18 @@ const resetProgress = async () => {
   cursor: pointer;
   font-weight: 600;
   transition: all 0.2s ease;
-}
-
-.start-button:hover {
-  background-color: #3a7bd5;
-  transform: translateY(-2px);
+  width: 100%;
+  max-width: 250px;
 }
 
 .loading-indicator,
 .error-message,
 .error-card {
   text-align: center;
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 8px;
   width: 100%;
-  max-width: 500px;
+  max-width: 100%;
 }
 
 .back-button {
@@ -235,25 +236,56 @@ const resetProgress = async () => {
   cursor: pointer;
 }
 
-.chapter-footer {
-  position: absolute;
-  bottom: 1rem;
-  left: 1rem;
-  right: 1rem;
-}
-
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-@media (max-width: 768px) {
+/* Media queries pour tablettes */
+@media (min-width: 768px) {
+  .story-container {
+    padding: 1.5rem;
+    min-height: calc(100vh - 80px);
+  }
+
+  .story-card {
+    max-width: 600px;
+    padding: 2rem 1.5rem;
+  }
+
   .story-title {
     font-size: 2rem;
   }
-  
+
+  .story-summary {
+    font-size: 1.1rem;
+  }
+}
+
+/* Media queries pour desktop */
+@media (min-width: 1024px) {
+  .story-container {
+    padding: 2rem;
+    min-height: calc(100vh - 120px);
+  }
+
   .story-card {
-    padding: 2rem 1rem;
+    max-width: 800px;
+    padding: 3rem 2rem;
+  }
+
+  .story-title {
+    font-size: 2.5rem;
+  }
+
+  .story-summary {
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+
+  .start-button {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
   }
 }
 </style>
