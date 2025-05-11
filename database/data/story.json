@@ -1,114 +1,271 @@
 {
     "chapters": [
         {
+            "chapter_number": 1,
             "title": "City Stade",
-            "content": "Tu passes tes journées à taper le ballon au quartier. Les gens commencent à te remarquer.",
+            "content": "Chaque jour, tu foulis le sol du city stade du quartier. Ballon collé au pied, gestes rapides, tu fais lever les têtes. Les anciens te saluent, les jeunes t’imitent. Une chose est sûre : tu ne passes plus inaperçu.",
             "choices": [
-                { "text": "Participer à un tournoi local", "next_chapter": 2 },
-                { "text": "Continuer à jouer pour le fun", "next_chapter": 14 }
-            ]
-        },
-        {
-            "title": "Club de Quartier",
-            "content": "Un coach t'aborde après le tournoi. Il te propose d'intégrer l'équipe U17 de la ville.",
-            "choices": [
-                { "text": "Accepter l'invitation", "next_chapter": 3 },
-                { "text": "Refuser, rester entre potes", "next_chapter": 13 }
-            ]
-        },
-        {
-            "title": "Finale Régionale",
-            "content": "Tu deviens titulaire. C'est la finale régionale. Les recruteurs sont là.",
-            "choices": [
-                { "text": "Tenter une action solo", "next_chapter": 4 },
                 {
-                    "text": "Jouer collectif et faire une passe décisive",
-                    "next_chapter": 5
+                    "text": "Participer à un tournoi local",
+                    "next_chapter": 2
+                },
+                {
+                    "text": "Continuer à jouer pour le fun",
+                    "next_chapter": 17
                 }
             ]
         },
         {
+            "chapter_number": 2,
+            "title": "Club de Quartier",
+            "content": "Après une belle prestation en tournoi, un coach s'approche. Regard sérieux, il te tend sa carte : \"On a besoin de gars comme toi en U17.\" Ton cœur bat plus fort. Le début d’un rêve ?",
+            "choices": [
+                {
+                    "text": "Accepter l'invitation",
+                    "next_chapter": 3
+                },
+                {
+                    "text": "Refuser, rester entre potes",
+                    "next_chapter": 18
+                }
+            ]
+        },
+        {
+            "chapter_number": 3,
+            "title": "Première Titularisation",
+            "content": "Ton premier match U17 approche. Terrain boueux, adversaire rugueux. Tu enfiles ton maillot, le cœur serré mais la tête haute. Il est temps de prouver que tu n’es pas là par hasard.",
+            "choices": [
+                {
+                    "text": "Jouer simple et efficace",
+                    "next_chapter": 5
+                },
+                {
+                    "text": "Tenter des gestes techniques",
+                    "next_chapter": 4
+                }
+            ]
+        },
+        {
+            "chapter_number": 4,
+            "title": "Banc pour la finale",
+            "content": "Tu as trop voulu en faire. Le coach te recale pour la finale. Depuis le banc, tu rages en silence. Il ne te reste qu’un choix : travailler ou abandonner.",
+            "choices": [
+                {
+                    "text": "Te battre à l’entraînement",
+                    "next_chapter": 5
+                },
+                {
+                    "text": "Faire profil bas",
+                    "next_chapter": 18
+                }
+            ]
+        },
+        {
+            "chapter_number": 5,
+            "title": "Finale Régionale",
+            "content": "Titulaire pour cette finale décisive, tu entres sur le terrain avec le feu dans les jambes. Les tribunes vibrent. Parmi la foule, des recruteurs notent chaque mouvement. C’est ta chance de briller.",
+            "choices": [
+                {
+                    "text": "Tenter une action solo",
+                    "next_chapter": 6
+                },
+                {
+                    "text": "Jouer collectif et faire une passe décisive",
+                    "next_chapter": 8
+                }
+            ]
+        },
+        {
+            "chapter_number": 6,
+            "title": "Recrutement Sous Pression",
+            "content": "Tu es courtisé de partout. Les appels s’enchaînent. Ton agent veut temporiser, toi tu veux foncer. Un choix stratégique peut changer ton avenir.",
+            "choices": [
+                {
+                    "text": "Écouter ton instinct",
+                    "next_chapter": 7
+                },
+                {
+                    "text": "Suivre ton agent",
+                    "next_chapter": 8
+                }
+            ]
+        },
+        {
+            "chapter_number": 7,
             "title": "Choix Grand Club",
-            "content": "Tu as impressionné. Deux clubs pro veulent de toi : l'un est prestigieux, très compétitif.",
+            "content": "Ta prestation a tapé dans l'œil des recruteurs. Deux clubs se disputent ta signature. L’un, prestigieux, te vend du rêve et des trophées… mais la concurrence y est féroce. Es-tu prêt à te battre pour ta place ?",
             "choices": [
-                { "text": "Rejoindre le grand club", "next_chapter": 6 }
+                {
+                    "text": "Rejoindre le grand club",
+                    "next_chapter": 9
+                }
             ]
         },
         {
+            "chapter_number": 8,
             "title": "Choix Petit Club",
-            "content": "Un club plus modeste mais formateur te propose une place.",
-            "choices": [{ "text": "Choisir le petit club", "next_chapter": 7 }]
+            "content": "Un club moins connu, mais réputé pour former les talents, t’ouvre ses portes. Ici, pas de strass, mais une vraie chance de progresser. Le terrain est ton école, et chaque match une leçon.",
+            "choices": [
+                {
+                    "text": "Choisir le petit club",
+                    "next_chapter": 10
+                }
+            ]
         },
         {
+            "chapter_number": 9,
             "title": "Banc au Grand Club",
-            "content": "Tu galères à avoir du temps de jeu. Tu doutes.",
+            "content": "Tu es dans le grand bain, mais tu ne nages pas encore. Les entraînements sont rudes, le banc est ta résidence secondaire. Tu te demandes si tu as fait le bon choix.",
             "choices": [
-                { "text": "Insister et t'entraîner dur", "next_chapter": 8 },
-                { "text": "Demander un prêt", "next_chapter": 9 }
+                {
+                    "text": "Insister et t'entraîner dur",
+                    "next_chapter": 12
+                },
+                {
+                    "text": "Demander un prêt",
+                    "next_chapter": 11
+                }
             ]
         },
         {
+            "chapter_number": 10,
             "title": "Titu au Petit Club",
-            "content": "Tu t'imposes, tu deviens capitaine. Les médias parlent de toi.",
+            "content": "Sur le terrain, tu t’imposes vite comme un leader. Le brassard finit à ton bras. Les articles parlent de toi. Mais tu sais que le vrai test, c’est encore à venir.",
             "choices": [
-                { "text": "Monter en pro rapidement", "next_chapter": 9 },
-                { "text": "Rester en jeunes", "next_chapter": 8 }
+                {
+                    "text": "Monter en pro rapidement",
+                    "next_chapter": 11
+                },
+                {
+                    "text": "Rester en jeunes",
+                    "next_chapter": 12
+                }
             ]
         },
         {
+            "chapter_number": 11,
+            "title": "Sélection Nationale",
+            "content": "Ton nom figure sur la liste de la sélection. Tu portes le maillot national, fier. Entré en quart de finale, tu sens le poids d’un pays sur tes épaules. Une occasion en or s’offre à toi...",
+            "choices": [
+                {
+                    "text": "Tenter une panenka",
+                    "next_chapter": 13
+                },
+                {
+                    "text": "Vise la lucarne",
+                    "next_chapter": 13
+                }
+            ]
+        },
+        {
+            "chapter_number": 12,
+            "title": "Vie au Centre de Formation",
+            "content": "Le centre, c’est la routine : lever tôt, entraînements, école, fatigue. Entre l’isolement et la pression, tu dois tenir. Ta passion est-elle plus forte que tout ?",
+            "choices": [
+                {
+                    "text": "Rester concentré",
+                    "next_chapter": 14
+                },
+                {
+                    "text": "Sortir la nuit",
+                    "next_chapter": 18
+                }
+            ]
+        },
+        {
+            "chapter_number": 13,
+            "title": "Retour de Mondial",
+            "content": "De retour de la Coupe du Monde, tu es une icône. Les marques t’appellent, les fans te réclament. Mais derrière les projecteurs, il y a encore un trophée à gagner...",
+            "choices": [
+                {
+                    "text": "Signer avec une marque",
+                    "next_chapter": 16
+                },
+                {
+                    "text": "Refuser et rester concentré",
+                    "next_chapter": 21
+                }
+            ]
+        },
+        {
+            "chapter_number": 14,
             "title": "Match Pro",
-            "content": "Tu entres en jeu à la 80e, tu marques à la dernière minute !",
+            "content": "Le coach t’appelle à la 80e. Tu respires à fond. Dernière minute, un centre arrive... et tu marques ! Le stade explose. Tu viens d’entrer dans le monde pro avec fracas.",
             "choices": [
                 {
                     "text": "Accorder une interview provoc'",
-                    "next_chapter": 10
+                    "next_chapter": 15
                 },
-                { "text": "Rester humble", "next_chapter": 10 }
+                {
+                    "text": "Rester humble",
+                    "next_chapter": 15
+                }
             ]
         },
         {
-            "title": "Sélection Nationale",
-            "content": "Tu es convoqué pour la Coupe du Monde ! Tu entres en 1/4 de finale.",
-            "choices": [
-                { "text": "Tenter une panenka", "next_chapter": 10 },
-                { "text": "Vise la lucarne", "next_chapter": 10 }
-            ]
-        },
-        {
+            "chapter_number": 15,
             "title": "Finale Coupe du Monde",
-            "content": "89e minute. Tu es seul face au gardien. Le public retient son souffle.",
+            "content": "89e minute. Score nul. Tu es lancé en profondeur, seul face au gardien. Le monde retient son souffle. Un choix, un geste... et peut-être la gloire.",
             "choices": [
-                { "text": "Tenter ta chance seul", "next_chapter": 15 },
-                { "text": "Faire la passe au 2e attaquant", "next_chapter": 12 }
+                {
+                    "text": "Tenter ta chance seul",
+                    "next_chapter": 19
+                },
+                {
+                    "text": "Faire la passe au 2e attaquant",
+                    "next_chapter": 16
+                }
             ]
         },
         {
+            "chapter_number": 16,
             "title": "Discours de Remise",
-            "content": "Tu es sur scène. Les projecteurs sont braqués sur toi.",
+            "content": "Sur scène, les projecteurs t’éblouissent. Les flashs crépitent. Une voix te demande de dire quelques mots... Tout le monde t’écoute. Comment vas-tu marquer l’histoire ?",
             "choices": [
-                { "text": "Se donner tout le mérite", "next_chapter": 11 },
-                { "text": "Remercier ceux qui t'ont aidé", "next_chapter": 12 }
+                {
+                    "text": "Se donner tout le mérite",
+                    "next_chapter": 20
+                },
+                {
+                    "text": "Remercier ceux qui t'ont aidé",
+                    "next_chapter": 21
+                }
             ]
         },
         {
-            "title": "Perdu Ballon d'Or",
-            "content": "Ton arrogance te coûte le trophée. Tu es applaudi timidement. La légende ne s'écrit pas."
-        },
-        {
-            "title": "Ballon d'Or",
-            "content": "Grâce à ta constance, ta discipline et ton mental, tu es élu Ballon d'Or. Une légende est née 🌟"
-        },
-        {
-            "title": "Fin : Jamais lancé",
-            "content": "Tu n'as jamais saisi ta chance. Ta carrière n'a jamais décollé."
-        },
-        {
+            "chapter_number": 17,
             "title": "Fin : Resté amateur",
-            "content": "Tu es resté dans le quartier, à jouer avec les potes. Rien de plus."
+            "content": "Tu continues à jouer au quartier, sourire aux lèvres. Mais le rêve pro s’est envolé. Tu es resté une étoile filante, admirée localement, oubliée ailleurs.",
+            "is_ending": true,
+            "choices": []
         },
         {
+            "chapter_number": 18,
+            "title": "Fin : Jamais lancé",
+            "content": "Tu as refusé les opportunités. Tu es resté dans l’ombre des projecteurs. Ta passion, jamais concrétisée. Tu vis avec le regret de ne pas avoir tenté.",
+            "is_ending": true,
+            "choices": []
+        },
+        {
+            "chapter_number": 19,
             "title": "Fin : Échec en finale",
-            "content": "Tu as voulu briller seul... et tu as échoué."
+            "content": "Tu as voulu briller seul... mais ton tir s’est envolé. La coupe s’échappe. Les regards sont lourds. Un rêve s’écroule sur une décision.",
+            "is_ending": true,
+            "choices": []
+        },
+        {
+            "chapter_number": 20,
+            "title": "Perdu Ballon d'Or",
+            "content": "Les votes sont tombés. Tu lèves le Ballon d’Or sous les applaudissements. Tes sacrifices, ton mental et ton jeu collectif ont payé. Une légende est née 🌟.",
+            "is_ending": true,
+            "choices": []
+        },
+        {
+            "chapter_number": 21,
+            "title": "Ballon d'Or",
+            "content": "Les votes sont tombés. Tu lèves le Ballon d’Or sous les applaudissements. Tes sacrifices, ton mental et ton jeu collectif ont payé. Une légende est née 🌟.",
+            "is_ending": true,
+            "choices": []
         }
     ]
 }
