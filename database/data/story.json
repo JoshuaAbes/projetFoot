@@ -52,7 +52,7 @@
             "choices": [
                 {
                     "text": "Te battre à l’entraînement",
-                    "next_chapter": 5
+                    "next_chapter": 22
                 },
                 {
                     "text": "Faire profil bas",
@@ -87,6 +87,10 @@
                 {
                     "text": "Suivre ton agent",
                     "next_chapter": 8
+                },
+                {
+                    "text": "Fêter la victoire avec tes amis",
+                    "next_chapter": 23
                 }
             ]
         },
@@ -164,7 +168,7 @@
             "choices": [
                 {
                     "text": "Rester concentré",
-                    "next_chapter": 14
+                    "next_chapter": 24
                 },
                 {
                     "text": "Sortir la nuit",
@@ -266,6 +270,66 @@
             "content": "Les votes sont tombés. Tu lèves le Ballon d’Or sous les applaudissements. Tes sacrifices, ton mental et ton jeu collectif ont payé. Une légende est née 🌟.",
             "is_ending": true,
             "choices": []
+        },
+        {
+            "chapter_number": 22,
+            "title": "Blessure Inattendue",
+            "content": "Un choc à l'entraînement. Tu ressens une vive douleur à la cheville. Le kiné te regarde avec inquiétude. La finale approche... mais seras-tu prêt ?",
+            "choices": [
+                {
+                    "text": "Forcer et jouer malgré la douleur",
+                    "next_chapter": 5
+                },
+                {
+                    "text": "Te reposer et rater la finale",
+                    "next_chapter": 18
+                }
+            ]
+        },
+        {
+            "chapter_number": 23,
+            "title": "Soirée ou Discipline",
+            "content": "Tu viens de briller en tournoi, et des potes t’invitent à une grosse soirée. Demain, tu as un entraînement important avec un recruteur en tribune.",
+            "choices": [
+                {
+                    "text": "Sortir et profiter",
+                    "next_chapter": 18
+                },
+                {
+                    "text": "Rester chez toi et te reposer",
+                    "next_chapter": 7
+                }
+            ]
+        },
+        {
+            "chapter_number": 24,
+            "title": "Le Coach T’appelle",
+            "content": "Tu pensais que personne ne te remarquait… mais le coach principal débarque pendant un entraînement : 'Tu veux ta chance ce week-end ? Montre-moi ce que tu vaux.'",
+            "choices": [
+                {
+                    "text": "Saisir l’opportunité",
+                    "next_chapter": 14
+                },
+                {
+                    "text": "Hésiter et rester en retrait",
+                    "next_chapter": 18
+                }
+            ]
+        },
+        {
+            "chapter_number": 25,
+            "title": "Fierté ou Reconnaissance",
+            "content": "Ton discours a divisé. Certains t’admirent, d’autres t’accusent d’arrogance. On t’invite à une grande émission. Tu as une nouvelle chance de t’exprimer.",
+            "choices": [
+                {
+                    "text": "Assumer ton franc-parler",
+                    "next_chapter": 20
+                },
+                {
+                    "text": "T'excuser et remercier ton équipe",
+                    "next_chapter": 21
+                }
+            ]
         }
     ]
 }
