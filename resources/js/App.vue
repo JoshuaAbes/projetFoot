@@ -42,7 +42,15 @@
 </template>
 
 <style>
-/* Style global (sans "scoped") pour appliquer la police à toute l'application */
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* Classes utilitaires pour les différents styles */
 body, html {
   font-family: "Libre Baskerville", serif;
   background-color: #38003D;
@@ -78,6 +86,38 @@ body, html {
   font-weight: 400;
   font-style: italic;
 }
+
+.mona-regular {
+  font-family: "Mona Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-optical-sizing: auto;
+  font-variation-settings: "wdth" 100;
+}
+
+.mona-semibold {
+  font-family: "Mona Sans", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-optical-sizing: auto;
+  font-variation-settings: "wdth" 100;
+}
+
+.mona-bold {
+  font-family: "Mona Sans", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-optical-sizing: auto;
+  font-variation-settings: "wdth" 100;
+}
+
+.mona-italic {
+  font-family: "Mona Sans", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  font-optical-sizing: auto;
+  font-variation-settings: "wdth" 100;
+}
 </style>
 
 <style scoped>
@@ -87,7 +127,7 @@ body, html {
   flex-direction: column;
   background-color: #38003D; /* Fond violet foncé */
   color: #03F1FE; /* Texte cyan */
-  font-family: "Libre Baskerville", serif;
+  font-family: "Mona Sans", sans-serif;
   width: 100%;
 }
 

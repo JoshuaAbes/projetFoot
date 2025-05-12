@@ -1,49 +1,64 @@
 :root {
-  /* Couleurs de thème */
-  --color-primary: #38003D;   /* Fond violet */
-  --color-text: #03F1FE;      /* Texte cyan */
-  --color-accent: #4d9aff;    /* Couleur d'accent (boutons) */
-  --color-secondary: #ce9059; /* Orange/sable pour éléments spécifiques */
-  
-  /* Polices */
-  --font-primary: "Libre Baskerville", serif;
-  --font-weight-regular: 400;
-  --font-weight-bold: 700;
-  
-  /* Espacement */
-  --spacing-small: 0.5rem;
-  --spacing-medium: 1rem;
-  --spacing-large: 2rem;
+    /* Couleurs de thème */
+    --color-primary: #38003d; /* Fond violet */
+    --color-text: #03f1fe; /* Texte cyan */
+    --color-accent: #4d9aff; /* Couleur d'accent (boutons) */
+    --color-secondary: #ce9059; /* Orange/sable pour éléments spécifiques */
+
+    /* Polices */
+    --font-primary: "Mona Sans", sans-serif;
+    --font-weight-regular: 400;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    /* Espacement */
+    --spacing-small: 0.5rem;
+    --spacing-medium: 1rem;
+    --spacing-large: 2rem;
 }
 
 /* Classes utilitaires globales */
 .text-primary {
-  color: var(--color-text);
+    color: var(--color-text);
 }
 
 .bg-primary {
-  background-color: var(--color-primary);
+    background-color: var(--color-primary);
 }
 
 .font-primary {
-  font-family: var(--font-primary);
+    font-family: var(--font-primary);
 }
 
 /* Classes de typographie */
-.libre-regular {
-  font-family: var(--font-primary);
-  font-weight: var(--font-weight-regular);
-  font-style: normal;
+.mona-regular {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-regular);
+    font-style: normal;
+    font-optical-sizing: auto;
+    font-variation-settings: "wdth" 100;
 }
 
-.libre-bold {
-  font-family: var(--font-primary);
-  font-weight: var(--font-weight-bold);
-  font-style: normal;
+.mona-semibold {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-semibold);
+    font-style: normal;
+    font-optical-sizing: auto;
+    font-variation-settings: "wdth" 100;
 }
 
-.libre-italic {
-  font-family: var(--font-primary);
-  font-weight: var(--font-weight-regular);
-  font-style: italic;
+.mona-bold {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-bold);
+    font-style: normal;
+    font-optical-sizing: auto;
+    font-variation-settings: "wdth" 100;
+}
+
+.mona-italic {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-regular);
+    font-style: italic;
+    font-optical-sizing: auto;
+    font-variation-settings: "wdth" 100;
 }
