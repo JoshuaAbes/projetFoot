@@ -4,12 +4,18 @@ namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
+/**
+ * Noyau HTTP de l'application
+ * 
+ * Cette classe définit les middlewares globaux, les groupes de middleware,
+ * et les alias de middleware qui peuvent être utilisés dans l'application.
+ */
 class Kernel extends HttpKernel
 {
     /**
-     * The application's global HTTP middleware stack.
+     * Liste des middlewares globaux de l'application.
      *
-     * These middleware are run during every request to your application.
+     * Ces middlewares sont exécutés à chaque requête vers l'application.
      *
      * @var array<int, class-string|string>
      */
@@ -20,7 +26,7 @@ class Kernel extends HttpKernel
     ];
 
     /**
-     * The application's route middleware groups.
+     * Groupes de middlewares de l'application.
      *
      * @var array<string, array<int, class-string|string>>
      */
@@ -41,9 +47,9 @@ class Kernel extends HttpKernel
     ];
 
     /**
-     * The application's middleware aliases.
+     * Alias de middlewares de l'application.
      *
-     * Aliases may be used to assign middleware to routes and groups.
+     * Ces alias peuvent être utilisés pour assigner des middlewares aux routes et groupes.
      *
      * @var array<string, class-string|string>
      */
@@ -59,26 +65,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin.auth' => \App\Http\Middleware\AdminAuthMiddleware::class,
+        'admin' => \App\Http\Middleware\AdminAuthMiddleware::class, // Alias supplémentaire pour le même middleware
     ];
-
-    /**
-     * Register the application's route middleware.
-     *
-     * These middleware may be assigned to groups or used individually.
-     *
-     * @var array<string, class-string|string>
-     */
-    protected $routeMiddleware = [
-        'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
-        'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
-        'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
-        'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
-        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'admin.auth' => \App\Http\Middleware\AdminAuthMiddleware::class,
-    ];
-} 
+}
